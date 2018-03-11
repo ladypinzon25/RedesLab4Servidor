@@ -1,1 +1,1 @@
-web: java -jar target/app.jar -p 1337
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar target/app.jar 
