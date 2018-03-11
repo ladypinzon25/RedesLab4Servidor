@@ -1,1 +1,1 @@
-web: java -jar target/app.jar -p $PORT
+web: java -jar target/app.jar -p 1337
