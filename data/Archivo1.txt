@@ -1,0 +1,253 @@
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Universidad	de	los	Andes	(Bogotá	- Colombia)
+ * Departamento	de	Ingeniería	de	Sistemas	y	Computación
+ * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
+ * 		
+ * Proyecto	Cupi2	(http://cupi2.uniandes.edu.co)
+ * Ejercicio: n1_maquinaExpendedora
+ * Autor: Equipo Cupi2 2018
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+package uniandes.cupi2.maquinaExpendedora.mundo;
+
+/**
+ * Representa la máquina expendedora.
+ */
+public class MaquinaExpendedora
+{
+    // -----------------------------------------------------------------
+    // Atributos
+    // -----------------------------------------------------------------
+
+    /**
+     * Producto 1 de la máquina expendedora.
+     */
+    // TODO Parte 3 Punto A: Declarar el atributo producto1 según el modelo del mundo.
+	private Producto producto1;
+
+    /**
+     * Producto 2 de la máquina expendedora.
+     */
+    // TODO Parte 3 Punto B: Declarar el atributo producto2 según el modelo del mundo.
+	private Producto producto2;
+
+    /**
+     * Producto 3 de la máquina expendedora.
+     */
+    // TODO Parte 3 Punto C: Declarar el atributo producto3 según el modelo del mundo.
+	private Producto producto3;
+
+    /**
+     * Producto 4 de la máquina expendedora.
+     */
+    // TODO Parte 3 Punto D: Declarar el atributo producto4 según el modelo del mundo.
+	private Producto producto4;
+
+    // -----------------------------------------------------------------
+    // Constructores
+    // -----------------------------------------------------------------
+
+    /**
+     * Construye una nueva máquina expendedora. <br>
+     * <b>post: </b> Se inicializan los 4 productos.<br>
+     */
+    public MaquinaExpendedora( )
+    {
+        // TODO Parte 3 Punto E: Completar el método constructor  usando la información presentada en la descripción del ejercicio.
+    	producto1 = new Producto("A1", "Papas Natural Margarita", 1300);
+    	producto2 = new Producto("B2", "Jugo Hit", 2000);
+    	producto3 = new Producto("C3", "Chocolatina Jet", 500);
+    	producto4 = new Producto("D4", "Galletas Festival", 800);
+    			
+    }
+
+    // -----------------------------------------------------------------
+    // Métodos
+    // -----------------------------------------------------------------
+
+    /**
+     * Retorna el producto 1.
+     * @return Producto 1.
+     */
+    public Producto darProducto1( )
+    {
+        // TODO Parte 3 Punto F: Completar el método según la documentación dada.
+    	return producto1;
+    }
+
+    /**
+     * Retorna el producto 2.
+     * @return Producto 2.
+     */
+    public Producto darProducto2( )
+    {
+        // TODO Parte 3 Punto G: Completar el método según la documentación dada.
+    	return producto2;
+    }
+
+    /**
+     * Retorna el producto 3.
+     * @return Producto 3.
+     */
+    public Producto darProducto3( )
+    {
+        // TODO Parte 3 Punto H: Completar el método según la documentación dada.
+    	return producto3;
+    }
+
+    /**
+     * Retorna el producto 4.
+     * @return Producto 4.
+     */
+    public Producto darProducto4( )
+    {
+        // TODO Parte 3 Punto I: Completar el método según la documentación dada.
+    	return producto4;
+    }
+
+    /**
+     * Abastece el producto 1 con las unidades recibidas por parámetro.
+     * @param pUnidades Unidades a abastecer.
+     */
+    public void abastecerProducto1( int pUnidades )
+    {
+        // TODO Parte 3 Punto J: Completar el método según la documentación dada.
+    	producto1.abastacer(pUnidades);
+    	
+    }
+
+    /**
+     * Abastece el producto 2 con las unidades recibidas por parámetro.
+     * @param pUnidades Unidades a abastecer.
+     */
+    public void abastecerProducto2( int pUnidades )
+    {
+        // TODO Parte 3 Punto K: Completar el método según la documentación dada.
+    	producto2.abastacer(pUnidades);
+    }
+
+    /**
+     * Abastece el producto 3 con las unidades recibidas por parámetro.
+     * @param pUnidades Unidades a abastecer.
+     */
+    public void abastecerProducto3( int pUnidades )
+    {
+        // TODO Parte 3 Punto L: Completar el método según la documentación dada.
+    	producto3.abastacer(pUnidades);
+    }
+
+    /**
+     * Abastece el producto 4 con las unidades recibidas por parámetro.
+     * @param pUnidades Unidades a abastecer.
+     */
+    public void abastecerProducto4( int pUnidades )
+    {
+        // TODO Parte 3 Punto M: Completar el método según la documentación dada.
+    	producto4.abastacer(pUnidades);
+    }
+
+    /**
+     * Vende una unidad del producto 1.<br>
+     * <b>pre: </b> Hay unidades disponibles del producto. <br>
+     */
+    public void venderProducto1( )
+    {
+        // TODO Parte 3 Punto N: Completar el método según la documentación dada.
+    	producto1.vender();
+    }
+
+    /**
+     * Vende una unidad del producto 2.<br>
+     * <b>pre: </b> Hay unidades disponibles del producto. <br>
+     */
+    public void venderProducto2( )
+    {
+        // TODO Parte 3 Punto O: Completar el método según la documentación dada.
+    	producto2.vender();
+    }
+
+    /**
+     * Vende una unidad del producto 3.<br>
+     * <b>pre: </b> Hay unidades disponibles del producto. <br>
+     */
+    public void venderProducto3( )
+    {
+        // TODO Parte 3 Punto P: Completar el método según la documentación dada.
+    	producto3.vender();
+    }
+
+    /**
+     * Vende una unidad del producto 4.<br>
+     * <b>pre: </b> Hay unidades disponibles del producto. <br>
+     */
+    public void venderProducto4( )
+    {
+        // TODO Parte 3 Punto Q: Completar el método según la documentación dada.
+    	producto4.vender();
+    }
+
+    /**
+     * Calcula la cantidad total de ventas de la máquina.
+     * @return Cantidad total de ventas de la máquina.
+     */
+    
+    // TODO Parte 3 Punto R: Declarar y completar el método darCantidadTotalVentas según la documentación dada y el modelo conceptual.
+    
+    public int darCantidadTotalVentas()
+    {
+    	int totalVentas = producto1.darCantidadUnidadesVendidas() + producto2.darCantidadUnidadesVendidas() + producto3.darCantidadUnidadesVendidas() + producto4.darCantidadUnidadesVendidas();
+    	return totalVentas;
+    }
+    
+
+    /**
+     * Calcula el valor total de las ventas de la máquina.
+     * @return Valor total de las ventas de la máquina.
+     */
+    // TODO Parte 3 Punto S: Declarar y completar el método darValorTotalVentas según la documentación dada y el modelo conceptual.
+    
+    public double darValorTotalVentas()
+    {
+    	double valorVentas = (producto1.darCantidadUnidadesVendidas() * producto1.darPrecio()) + (producto2.darCantidadUnidadesVendidas() * 2000) + (producto3.darCantidadUnidadesVendidas() * 500) + (producto4.darCantidadUnidadesVendidas() * 800);
+    	return valorVentas;
+    }
+
+
+    /**
+     * Calcula el porcentaje de disponibilidad de la máquina.
+     * @param pCapacidadMaxima Capacidad de la máquina. pCapacidadMaxima > 0.
+     * @return Porcentaje de disponibilidad de la máquina.
+     */
+    // TODO Parte 3 Punto T: Declarar y completar el método darPorcentajeDisponibilidad según la documentación dada y el modelo conceptual.
+    
+    public double darPorcentajeDisponibilidad( double pCapacidadMaxima)
+    {
+    	int disponible = (producto1.darCantidadUnidadesDisponibles() + producto2.darCantidadUnidadesDisponibles() + producto3.darCantidadUnidadesDisponibles() + producto4.darCantidadUnidadesDisponibles());
+    	double porcentaje = 100 - ((disponible/pCapacidadMaxima)*100);
+    	return porcentaje;
+    }
+
+
+    // -----------------------------------------------------------------
+    // Puntos de Extensión
+    // -----------------------------------------------------------------
+
+    /**
+     * Extensión 1.
+     * @return respuesta1.
+     */
+    public String metodo1( )
+    {
+        return "Respuesta 1";
+    }
+
+    /**
+     * Extensión 2.
+     * @return respuesta2.
+     */
+    public String metodo2( )
+    {
+        return "Respuesta 2";
+    }
+}

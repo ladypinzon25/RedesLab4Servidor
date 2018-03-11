@@ -1,0 +1,343 @@
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Universidad  de  los Andes   (Bogotá - Colombia)
+ * Departamento de  Ingeniería  de  Sistemas    y   Computación
+ * Licenciado   bajo    el  esquema Academic Free License versión 2.1
+ *      
+ * Proyecto Cupi2   (http://cupi2.uniandes.edu.co)
+ * Ejercicio: n1_maquinaExpendedora
+ * Autor: Equipo Cupi2 2018
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+package uniandes.cupi2.maquinaExpendedora.interfaz;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import uniandes.cupi2.maquinaExpendedora.mundo.MaquinaExpendedora;
+import uniandes.cupi2.maquinaExpendedora.mundo.Producto;
+
+/**
+ * Clase principal de la interfaz
+ */
+@SuppressWarnings("serial")
+public class InterfazMaquinaExpendedora extends JFrame
+{
+    // -----------------------------------------------------------------
+    // Atributos
+    // -----------------------------------------------------------------
+
+    /**
+     * Asociación a la clase principal del mundo.
+     */
+    private MaquinaExpendedora mundo;
+
+    // -----------------------------------------------------------------
+    // Atributos de la interfaz
+    // -----------------------------------------------------------------
+
+    /**
+     * Contiene el Banner.
+     */
+    private PanelImagen panelImagen;
+
+    /**
+     * Panel de botones ubicado en la zona inferior de la interfaz
+     */
+    private PanelOpciones panelOpciones;
+
+    /**
+     * Panel del producto 1
+     */
+    private PanelProducto panelProducto1;
+
+    /**
+     * Panel del producto 2
+     */
+    private PanelProducto panelProducto2;
+
+    /**
+     * Panel del producto 3
+     */
+    private PanelProducto panelProducto3;
+
+    /**
+     * Panel del producto 4
+     */
+    private PanelProducto panelProducto4;
+
+    // -----------------------------------------------------------------
+    // Constructores
+    // -----------------------------------------------------------------
+
+    /**
+     * Construye la ventana principal de la aplicación. <br>
+     * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
+     */
+    public InterfazMaquinaExpendedora( )
+    {
+        setTitle( "Máquina expendedora" );
+        setSize( 610, 690 );
+        setLocationRelativeTo( null );
+        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        setResizable( true );
+
+        mundo = new MaquinaExpendedora( );
+
+        Producto p1 = mundo.darProducto1( );
+        Producto p2 = mundo.darProducto2( );
+        Producto p3 = mundo.darProducto3( );
+        Producto p4 = mundo.darProducto4( );
+
+        panelProducto1 = new PanelProducto( this, p1.darNombre( ), p1.darIdentificador( ), p1.darPrecio( ), p1.darCantidadUnidadesDisponibles( ) );
+        panelProducto2 = new PanelProducto( this, p2.darNombre( ), p2.darIdentificador( ), p2.darPrecio( ), p2.darCantidadUnidadesDisponibles( ) );
+        panelProducto3 = new PanelProducto( this, p3.darNombre( ), p3.darIdentificador( ), p3.darPrecio( ), p3.darCantidadUnidadesDisponibles( ) );
+        panelProducto4 = new PanelProducto( this, p4.darNombre( ), p4.darIdentificador( ), p4.darPrecio( ), p4.darCantidadUnidadesDisponibles( ) );
+
+        JPanel panelCentro = new JPanel( new GridLayout( 2, 2 ) );
+
+        panelCentro.add( panelProducto1 );
+        panelCentro.add( panelProducto2 );
+        panelCentro.add( panelProducto3 );
+        panelCentro.add( panelProducto4 );
+
+        add( panelCentro, BorderLayout.CENTER );
+
+        panelImagen = new PanelImagen( );
+        add( panelImagen, BorderLayout.NORTH );
+
+        PanelBotones panelBotones = new PanelBotones( this );
+        add( panelBotones, BorderLayout.EAST );
+
+        panelOpciones = new PanelOpciones( this );
+        add( panelOpciones, BorderLayout.SOUTH );
+    }
+
+    // -----------------------------------------------------------------
+    // Métodos
+    // -----------------------------------------------------------------
+
+    /**
+     * Abastece la máquina con un número de unidades de un producto especificado.
+     * @param pIdentificador Identificador del producto.
+     * @param pUnidades Número de unidades a abastecer.
+     */
+    public void abastecer( String pIdentificador, int pUnidades )
+    {
+        Producto p1 = mundo.darProducto1( );
+        Producto p2 = mundo.darProducto2( );
+        Producto p3 = mundo.darProducto3( );
+        Producto p4 = mundo.darProducto4( );
+
+        if( pIdentificador.equals( p1.darIdentificador( ) ) )
+        {
+            mundo.abastecerProducto1( pUnidades );
+            panelProducto1.actualizarInterfaz( p1.darPrecio( ), p1.darCantidadUnidadesDisponibles( ) );
+        }
+        else if( pIdentificador.equals( p2.darIdentificador( ) ) )
+        {
+            mundo.abastecerProducto2( pUnidades );
+            panelProducto2.actualizarInterfaz( p2.darPrecio( ), p2.darCantidadUnidadesDisponibles( ) );
+
+        }
+        else if( pIdentificador.equals( p3.darIdentificador( ) ) )
+        {
+            mundo.abastecerProducto3( pUnidades );
+            panelProducto3.actualizarInterfaz( p3.darPrecio( ), p3.darCantidadUnidadesDisponibles( ) );
+
+        }
+        else if( pIdentificador.equals( p4.darIdentificador( ) ) )
+        {
+            mundo.abastecerProducto4( pUnidades );
+            panelProducto4.actualizarInterfaz( p4.darPrecio( ), p4.darCantidadUnidadesDisponibles( ) );
+
+        }
+
+    }
+
+    /**
+     * Vende un producto de la máquina.
+     * @param pIdentificador Identificador del producto a comprar.
+     */
+    public void vender( String pIdentificador )
+    {
+
+        Producto p1 = mundo.darProducto1( );
+        Producto p2 = mundo.darProducto2( );
+        Producto p3 = mundo.darProducto3( );
+        Producto p4 = mundo.darProducto4( );
+
+        if( pIdentificador.equals( p1.darIdentificador( ) ) )
+        {
+            if( p1.darCantidadUnidadesDisponibles( ) > 0 )
+            {
+                mundo.venderProducto1( );
+                panelProducto1.actualizarInterfaz( p1.darPrecio( ), p1.darCantidadUnidadesDisponibles( ) );
+            }
+            else
+            {
+                JOptionPane.showMessageDialog( this, "El producto se encuentra agotado", "Error", JOptionPane.ERROR_MESSAGE );
+            }
+        }
+        else if( pIdentificador.equals( p2.darIdentificador( ) ) )
+        {
+            if( p2.darCantidadUnidadesDisponibles( ) > 0 )
+            {
+                mundo.venderProducto2( );
+                panelProducto2.actualizarInterfaz( p2.darPrecio( ), p2.darCantidadUnidadesDisponibles( ) );
+            }
+            else
+            {
+                JOptionPane.showMessageDialog( this, "El producto se encuentra agotado", "Error", JOptionPane.ERROR_MESSAGE );
+            }
+        }
+        else if( pIdentificador.equals( p3.darIdentificador( ) ) )
+        {
+            if( p3.darCantidadUnidadesDisponibles( ) > 0 )
+            {
+                mundo.venderProducto3( );
+                panelProducto3.actualizarInterfaz( p3.darPrecio( ), p3.darCantidadUnidadesDisponibles( ) );
+            }
+            else
+            {
+                JOptionPane.showMessageDialog( this, "El producto se encuentra agotado", "Error", JOptionPane.ERROR_MESSAGE );
+            }
+        }
+        else if( pIdentificador.equals( p4.darIdentificador( ) ) )
+        {
+            if( p4.darCantidadUnidadesDisponibles( ) > 0 )
+            {
+                mundo.venderProducto4( );
+                panelProducto4.actualizarInterfaz( p4.darPrecio( ), p4.darCantidadUnidadesDisponibles( ) );
+            }
+            else
+            {
+                JOptionPane.showMessageDialog( this, "El producto se encuentra agotado", "Error", JOptionPane.ERROR_MESSAGE );
+            }
+        }
+
+    }
+
+    /**
+     * Muestra el diálogo con la cantidad de ventas de la máquina
+     */
+    public void mostrarDialogoCantidadVentas( )
+    {
+        int totalVentas = mundo.darCantidadTotalVentas( );
+        String mensaje = "La cantidad de ventas de la máquina es " + totalVentas + ".";
+        JOptionPane.showMessageDialog( this, mensaje, "Cantidad de ventas", JOptionPane.INFORMATION_MESSAGE );
+    }
+
+    /**
+     * Muestra el diálogo con el valor total de ventas de la máquina
+     */
+    public void mostrarDialogoValorTotalVentas( )
+    {
+        double valorTotalVentas = mundo.darValorTotalVentas( );
+        String mensaje = "El valor total de las ventas de la máquina es $" + valorTotalVentas + ".";
+        JOptionPane.showMessageDialog( this, mensaje, "Valor total de las ventas", JOptionPane.INFORMATION_MESSAGE );
+    }
+
+    /**
+     * Muestra el diálogo con la capacidad disponible de la máquina.
+     */
+    public void mostrarDialogoPorcentajeDeDisponibilidad( )
+    {
+        String capacidad = JOptionPane.showInputDialog( this, "Ingrese la capacidad de la máquina" );
+
+        if( capacidad != null )
+        {
+            try
+            {
+                int capacidadInt = Integer.parseInt( capacidad );
+
+                if( capacidadInt < 1 )
+                {
+                    JOptionPane.showMessageDialog( this, "La capacidad debe ser mayor o igual a 1.", "Error", JOptionPane.INFORMATION_MESSAGE );
+                }
+
+                else
+                {
+                    double capacidadDisponible = mundo.darPorcentajeDisponibilidad( capacidadInt );
+                    String mensaje = "El porcentaje de disponibilidad de la máquina es del " + capacidadDisponible + "%.";
+                    JOptionPane.showMessageDialog( this, mensaje, "Porcentaje de disponibilidad", JOptionPane.INFORMATION_MESSAGE );
+                }
+            }
+            catch( Exception e )
+            {
+                JOptionPane.showMessageDialog( this, "Debe ingresar números enteros.", "Error", JOptionPane.INFORMATION_MESSAGE );
+            }
+        }
+    }
+
+    /**
+     * Muestra el diálogo con las ventas por producto.
+     */
+    public void mostrarDialogoUnidadesVendidas( )
+    {
+        Producto p1 = mundo.darProducto1( );
+        Producto p2 = mundo.darProducto2( );
+        Producto p3 = mundo.darProducto3( );
+        Producto p4 = mundo.darProducto4( );
+
+        String mensaje = "La cantidad de unidades vendidas por producto es:";
+        mensaje += "\n" + p1.darNombre( ) + ": " + p1.darCantidadUnidadesVendidas( );
+        mensaje += "\n" + p2.darNombre( ) + ": " + p2.darCantidadUnidadesVendidas( );
+        mensaje += "\n" + p3.darNombre( ) + ": " + p3.darCantidadUnidadesVendidas( );
+        mensaje += "\n" + p4.darNombre( ) + ": " + p4.darCantidadUnidadesVendidas( );
+
+        JOptionPane.showMessageDialog( this, mensaje, "Unidades vendidas", JOptionPane.INFORMATION_MESSAGE );
+    }
+
+    // -----------------------------------------------------------------
+    // Puntos de extensión
+    // -----------------------------------------------------------------
+
+    /**
+     * Extensión 1
+     */
+    public void reqFuncOpcion1( )
+    {
+
+        String resultado = mundo.metodo1( );
+        JOptionPane.showMessageDialog( this, resultado, "Respuesta 1", JOptionPane.INFORMATION_MESSAGE );
+    }
+
+    /**
+     * Extensión 2
+     */
+    public void reqFuncOpcion2( )
+    {
+
+        String resultado = mundo.metodo2( );
+        JOptionPane.showMessageDialog( this, resultado, "Respuesta 2", JOptionPane.INFORMATION_MESSAGE );
+    }
+
+    // -----------------------------------------------------------------
+    // Main
+    // -----------------------------------------------------------------
+
+    /**
+     * Este método ejecuta la aplicación, creando una nueva interfaz
+     * @param args Arreglo opcional de argumentos que se recibe por línea de comandos
+     */
+    public static void main( String[] args )
+    {
+        try
+        {
+            // Unifica la interfaz para Mac y para Windows.
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
+
+            InterfazMaquinaExpendedora interfaz = new InterfazMaquinaExpendedora( );
+            interfaz.setVisible( true );
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace( );
+        }
+    }
+
+}
