@@ -1,0 +1,155 @@
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Universidad	de	los	Andes	(Bogotá	- Colombia)
+ * Departamento	de	Ingeniería	de	Sistemas	y	Computación
+ * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
+ * 		
+ * Proyecto	Cupi2	(http://cupi2.uniandes.edu.co)
+ * Ejercicio: n1_maquinaExpendedora
+ * Autor: Equipo Cupi2 2018
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+package uniandes.cupi2.maquinaExpendedora.mundo;
+
+/**
+ * Representa un producto de la máquina expendedora.
+ */
+public class Producto
+{
+
+    // -----------------------------------------------------------------
+    // Atributos
+    // -----------------------------------------------------------------
+
+    /**
+     * Identificador del producto
+     */
+    // TODO Parte 2 Punto A: Declarar el atributo identificador según el modelo del mundo.
+	private String identificador;
+
+    /**
+     * Nombre del producto
+     */
+    // TODO Parte 2 Punto B: Declarar el atributo nombre según el modelo del mundo.
+	private String nombre;
+
+    /**
+     * Precio del producto
+     */
+    // TODO Parte 2 Punto C: Declarar el atributo precio según el modelo del mundo.
+	private double precio;
+
+    /**
+     * Cantidad de unidades disponibles del producto
+     */
+    // TODO Parte 2 Punto D: Declarar el atributo cantidadUnidadesDisponibles según el modelo del mundo.
+	private int cantidadUnidadesDisponibles;
+
+    /**
+     * Cantidad de unidades vendidas del producto;
+     */
+    // TODO Parte 2 Punto E: Declarar el atributo cantidadUnidadesVendidas según el modelo del mundo.
+	private int cantidadUnidadesVendidas;
+
+    // -----------------------------------------------------------------
+    // Constructores
+    // -----------------------------------------------------------------
+
+    /**
+     * Crea un producto usando la información recibida por parámetro. <br>
+     * <b>post: </b> Se inicializaron los atributos cantidadUnidadesDisponibles y cantidadUnidadesVendidas en 0. <br>
+     * Se inicializaron los atributos nombre, identificador y precio con los valores recibidos por parámetro. <br>
+     * @param pIdentificador Identificador del producto. pIdentificador != null && pIdentificador != "".
+     * @param pNombre Nombre del producto. pNombre != null && pNombre != ""
+     * @param pPrecio Precio del producto. pPrecio >= 50.
+     */
+    public Producto( String pIdentificador, String pNombre, double pPrecio )
+    {
+        // TODO Parte 2 Punto F: Completar el método constructor de la clase según la documentación dada.
+    	identificador = pIdentificador;
+    	nombre = pNombre;
+    	precio = pPrecio;
+    	cantidadUnidadesDisponibles = 0;
+    	cantidadUnidadesVendidas = 0;
+    }
+
+    // -----------------------------------------------------------------
+    // Métodos
+    // -----------------------------------------------------------------
+
+    /**
+     * Retorna el identificador del producto.
+     * @return Identificador del producto.
+     */
+    public String darIdentificador( )
+    {
+        // TODO Parte 2 Punto G: Completar el método según la documentación.
+    	
+    	return identificador;
+    }
+
+    /**
+     * Retorna el nombre del producto.
+     * @return Nombre del producto.
+     */
+    public String darNombre( )
+    {
+        // TODO Parte 2 Punto H: Completar el método según la documentación.
+    	return nombre;
+    }
+
+    /**
+     * Retorna el precio del producto.
+     * @return Precio del producto.
+     */
+    public double darPrecio( )
+    {
+        // TODO Parte 2 Punto I: Completar el método según la documentación.
+    	return precio;
+    }
+
+    /**
+     * Retorna la cantidad de unidades disponibles del producto.
+     * @return Cantidad de unidades disponibles del producto.
+     */
+    public int darCantidadUnidadesDisponibles( )
+    {
+        // TODO Parte 2 Punto J: Completar el método según la documentación.
+    	return cantidadUnidadesDisponibles;
+    }
+
+    /**
+     * Retorna la cantidad de unidades vendidas del producto.
+     * @return Cantidad de unidades vendidas del producto.
+     */
+    public int darCantidadUnidadesVendidas( )
+    {
+        // TODO Parte 2 Punto K: Completar el método según la documentación.
+    	return cantidadUnidadesVendidas;
+    }
+
+    /**
+     * Aumenta la cantidad de unidades disponibles según las unidades recibidas por parámetro.<br>
+     * <b>post: </b> Se aumentó la cantidad de unidades disponibles en la cantidad dada. <br>
+     * @param pUnidades Cantidad de unidades recibidas.
+     */
+    public void abastacer( int pUnidades )
+    {
+        // TODO Parte 2 Punto L: Completar el método según la documentación.
+    	cantidadUnidadesDisponibles = cantidadUnidadesDisponibles + pUnidades;
+    	
+    }
+
+    /**
+     * Vende una unidad del producto. 
+     * <b>pre: </b> Hay unidades disponibles.<br>
+     * <b>post: </b> Se disminuyó la cantidad de unidades disponibles y aumentó la cantidad de unidades vendidas. <br>
+     * 
+     */
+    public void vender( )
+    {
+        // TODO Parte 2 Punto M: Completar el método según la documentación.
+    	cantidadUnidadesVendidas ++;
+    	cantidadUnidadesDisponibles --;
+    }
+}
