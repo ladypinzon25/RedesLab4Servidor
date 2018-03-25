@@ -22,8 +22,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class Servidor 
 {
-	private static final int numTransacciones = 1;//TODO: Establecer numero max de conexiones
+	private static final int numTransacciones = 2;//TODO: Establecer numero max de conexiones
 	private static final int TIME_OUT = 100000;//TODO: Establecer timeout
+	public static int numTransaccionesActual = 0;
 
 	/**
 	 * Constante que especifica el numero de threads que se usan en el pool de conexiones.
@@ -32,7 +33,7 @@ public class Servidor
 	//Escoger numero de threads (No es necesario cambiar)
 
 	//Escenario 1
-	public static final int N_THREADS = 1;
+	public static final int N_THREADS = 2;
 
 	//Escenario 2
 	//public static final int N_THREADS = 2;
@@ -58,39 +59,41 @@ public class Servidor
 	 * @throws IOException Si el socket no pudo ser creado.
 	 */
 	private ExecutorService executor = Executors.newFixedThreadPool(N_THREADS);
-	
-	
-	
+
+
+
 	public static void main(String[] args) throws IOException {
 		elServidor = new Servidor();
 		elServidor.runServidor();
 	}
 
-	
+
 
 	private void runServidor() {
 
-		int num = 0;
+
 		try {
 			// Crea el socket que escucha en el puerto seleccionado.
 			elSocket = new ServerSocket(PUERTO);
 			System.out.println("Servidor Coordinador escuchando en puerto: " + PUERTO);
 			System.out.println("Numero maximo de conexiones: "+ numTransacciones);
 
-			while (num!=numTransacciones) 
+			while (true) 
 			{
 				Socket sThread = null;
 				// ////////////////////////////////////////////////////////////////////////
 				// Recibe conexiones de los clientes
 				// ////////////////////////////////////////////////////////////////////////
-				sThread = elSocket.accept();
-				sThread.setSoTimeout(TIME_OUT);
-				System.out.println("Thread " + num + " recibe a un cliente.");
+				if(numTransaccionesActual<numTransacciones){
+					sThread = elSocket.accept();
+					sThread.setSoTimeout(TIME_OUT);
+					System.out.println("Thread " + numTransaccionesActual + " recibe a un cliente.");
 
-				Worker w = new Worker(num,sThread);
-				executor.submit(w);
+					Worker w = new Worker(numTransaccionesActual,sThread);
+					executor.submit(w);
 
-				num++;
+					numTransaccionesActual++;
+				}
 			}
 		} 
 		catch (Exception e) 

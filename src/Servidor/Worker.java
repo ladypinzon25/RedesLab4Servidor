@@ -238,7 +238,8 @@ public class Worker implements Runnable
 					os.write(contents);
 					//System.out.println("Sending file ... "+(current*100)/fileLength+"% complete!");
 				}
-
+				pOut.println("ADIOS");
+				Servidor.numTransaccionesActual--;
 				os.flush();
 
 				System.out.println("Adios Cliente " + id);
@@ -247,7 +248,7 @@ public class Worker implements Runnable
 				//ENVIAR ARCHIVO - FIN	
 				//////////////////////////////////////////////////////////////////////////
 
-				estado = 1;
+				estado = 7;
 
 				break;
 
@@ -257,6 +258,14 @@ public class Worker implements Runnable
 				estado = 0;
 				break;
 			}
+		}
+		try {
+			Servidor.numTransaccionesActual--;
+			this.finalize();
+			
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
